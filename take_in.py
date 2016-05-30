@@ -53,6 +53,7 @@ def take_in():
 
     print "Rolling backward..."
     time.sleep(.1)
+    pause_for_decision()
     while not before_halfway:
         GPIO.output(MOTOR_FORWARD, False)
         GPIO.output(MOTOR_BACKWARD, True)
@@ -61,6 +62,16 @@ def take_in():
     
     if not tray_empty:
         take_in()
+
+def pause_for_decision():
+    """Pause ballot in roller to make a decision to accept or reject."""
+    GPIO.output(MOTOR_FORWARD, False)
+    GPIO.output(MOTOR_BACKWARD, True)
+    time.sleep(.3)
+    GPIO.output(MOTOR_BACKWARD, False)
+
+    print "Paused for decision."
+    raw_input("Press Enter to continue...")
 
 def clean_up():
     """Roll backward to open tray, then shut down pins."""
