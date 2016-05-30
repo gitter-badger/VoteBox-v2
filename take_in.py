@@ -67,7 +67,7 @@ def pause_for_decision():
     """Pause ballot in roller to make a decision to accept or reject."""
     GPIO.output(MOTOR_FORWARD, False)
     GPIO.output(MOTOR_BACKWARD, True)
-    time.sleep(.3)
+    time.sleep(.1)
     GPIO.output(MOTOR_BACKWARD, False)
 
     print "Paused for decision."
